@@ -4,10 +4,10 @@ updates:
   directory: "/"
   schedule:
     interval: weekly
-    day: saturday
-    time: "03:00"
-    timezone: Europe/Paris
-  open-pull-requests-limit: 10
+    day: tuesday
+    time: "00:35"
+    timezone: Europe/Budapest
+  open-pull-requests-limit: 20
   labels:
   - 3. to review
   - dependencies
