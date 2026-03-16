@@ -5,7 +5,7 @@ updates:
   schedule:
     interval: weekly
     day: tuesday
-    time: "00:35"
+    time: "00:38"
     timezone: Europe/Budapest
   open-pull-requests-limit: 20
   labels:
