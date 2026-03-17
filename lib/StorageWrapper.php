@@ -36,6 +36,7 @@ class StorageWrapper extends Wrapper {
 
 	/**
 	 * @param array $parameters
+	 * @psalm-suppress PossiblyUnusedParam Psalm fails to detect that the parameters are forwarded to parent and stored
 	 */
 	public function __construct($parameters) {
 		parent::__construct($parameters);
