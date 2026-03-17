@@ -20,41 +20,42 @@
  *
  */
 
-$(document).ready(function() {
-	var timeouts = {
-			'extension_additions': undefined,
-			'notefile_additions': undefined,
-			'extension_exclusions': undefined,
-			'notefile_exclusions': undefined
-		},
-		savingCustomValues = function(fieldId, $field) {
-
-
-			var patterns = $field.val()
-				.split("\n")
-				.map(function(pattern) { return pattern.trim(); })
-				.filter(function(pattern) { return pattern !== ''; });
-			OCP.AppConfig.setValue('ransomware_protection', fieldId, JSON.stringify(patterns), {
-				success: function() {
-					$('#loading_' + fieldId).addClass('hidden');
-					$('#saved_' + fieldId).removeClass('hidden');
-					setTimeout(function() {
-						$('#saved_' + fieldId).addClass('hidden');
-					}, 2500);
-				}
+$(function() {
+	const timeouts = {
+		'extension_additions': undefined,
+		'notefile_additions': undefined,
+		'extension_exclusions': undefined,
+		'notefile_exclusions': undefined
+	},
+	savingCustomValues = function(fieldId, $field) {
+		const patterns = $field.val()
+			.split("\n")
+			.map(pattern => pattern.trim())
+			.filter(pattern => pattern !== '');
+		OCP.AppConfig.setValue('ransomware_protection', fieldId, JSON.stringify(patterns))
+			.done(function() {
+				$('#loading_' + fieldId).addClass('hidden');
+				$('#saved_' + fieldId).removeClass('hidden');
+				setTimeout(function() {
+					$('#saved_' + fieldId).addClass('hidden');
+				}, 2500);
+			})
+			.fail(function(xhr, status, error) {
+				console.error('Failed to save configuration:', error);
+				$('#loading_' + fieldId).addClass('hidden');
 			});
-		};
+	};
 
 	$('#ransomware_protection').find('textarea').on('change input paste keyup', function(e) {
-		var $field = $(e.currentTarget),
+		const $field = $(e.currentTarget),
 			fieldId = $field.attr('id');
 
-		if (!_.isUndefined(timeouts[fieldId])) {
+		if (timeouts[fieldId] !== undefined) {
 			clearTimeout(timeouts[fieldId]);
 		}
 
 		$('#loading_' + fieldId).removeClass('hidden');
-		timeouts[fieldId] = setTimeout(_.bind(savingCustomValues, this, fieldId, $field), 1500);
+		timeouts[fieldId] = setTimeout(savingCustomValues.bind(null, fieldId, $field), 1500);
 	});
 
 	$('#ransomware_protection_notes_include_biased').change(function() {

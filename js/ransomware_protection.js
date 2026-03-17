@@ -20,15 +20,18 @@
  *
  */
 
-$(document).ready(function() {
+$(function() {
 	$('#ransomware_protection_reenable').on('click', function() {
 		$.ajax({
 			type: 'POST',
-			url: OC.linkToOCS('apps/ransomware_protection/api/v1', 2) + 'protection',
-			success: function () {
-				$('#ransomware_protection_paused').addClass('hidden');
-				$('#ransomware_protection_protected').removeClass('hidden');
-			}
+			url: OC.linkToOCS('apps/ransomware_protection/api/v1', 2) + 'protection'
+		})
+		.done(function() {
+			$('#ransomware_protection_paused').addClass('hidden');
+			$('#ransomware_protection_protected').removeClass('hidden');
+		})
+		.fail(function(xhr, status, error) {
+			console.error('Failed to re-enable protection:', error);
 		});
 	});
 });
