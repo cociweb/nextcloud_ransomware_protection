@@ -1,19 +1,125 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="4.20.0@f82a70e7edfc6cf2705e9374c8a0b6a974a779ed">
+<files psalm-version="6.15.1@28dc127af1b5aecd52314f6f645bafc10d0e11f9">
   <file src="lib/Analyzer.php">
     <MissingDependency occurrences="2">
       <code>$filePath</code>
       <code>$fullPath</code>
     </MissingDependency>
+    <PossiblyUnusedProperty>
+      <code>$logger</code>
+    </PossiblyUnusedProperty>
+    <PossiblyUnusedMethod>
+      <code>__construct</code>
+      <code>checkPath</code>
+      <code>translatePath</code>
+    </PossiblyUnusedMethod>
   </file>
   <file src="lib/AppInfo/Application.php">
     <MissingDependency occurrences="1">
       <code>StorageWrapper|IStorage</code>
     </MissingDependency>
+    <UnusedClass>
+      <code>Application</code>
+    </UnusedClass>
+    <MissingOverrideAttribute>
+      <code>register</code>
+      <code>boot</code>
+    </MissingOverrideAttribute>
+    <PossiblyUnusedParam>
+      <code>$context</code>
+      <code>$event</code>
+    </PossiblyUnusedParam>
   </file>
   <file src="lib/CacheWrapper.php">
     <UndefinedClass occurrences="1">
       <code>Wrapper</code>
     </UndefinedClass>
+    <UnusedClass>
+      <code>CacheWrapper</code>
+    </UnusedClass>
+    <PossiblyUnusedParam>
+      <code>$mount</code>
+      <code>$path</code>
+      <code>$storage</code>
+      <code>$source</code>
+    </PossiblyUnusedParam>
+  </file>
+  <file src="lib/Command/Block.php">
+    <UnusedClass>
+      <code>Block</code>
+    </UnusedClass>
+  </file>
+  <file src="lib/Controller/ApiController.php">
+    <UnusedClass>
+      <code>ApiController</code>
+    </UnusedClass>
+  </file>
+  <file src="lib/Notification/Notifier.php">
+    <PossiblyUnusedMethod>
+      <code>__construct</code>
+    </PossiblyUnusedMethod>
+    <MissingOverrideAttribute>
+      <code>getid</code>
+      <code>getname</code>
+      <code>prepare</code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="lib/Settings/Admin.php">
+    <UnusedClass>
+      <code>Admin</code>
+    </UnusedClass>
+    <MissingOverrideAttribute>
+      <code>getform</code>
+      <code>getsection</code>
+      <code>getpriority</code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="lib/Settings/Personal.php">
+    <UnusedClass>
+      <code>Personal</code>
+    </UnusedClass>
+    <MissingOverrideAttribute>
+      <code>getform</code>
+      <code>getsection</code>
+      <code>getpriority</code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="lib/StorageWrapper.php">
+    <PossiblyUnusedProperty>
+      <code>$analyzer</code>
+    </PossiblyUnusedProperty>
+    <PossiblyUnusedMethod>
+      <code>__construct</code>
+      <code>isCreatable</code>
+      <code>isReadable</code>
+      <code>isUpdatable</code>
+      <code>isDeletable</code>
+      <code>file_get_contents</code>
+      <code>file_put_contents</code>
+      <code>unlink</code>
+      <code>rename</code>
+      <code>copy</code>
+      <code>fopen</code>
+      <code>touch</code>
+      <code>getCache</code>
+      <code>getDirectDownload</code>
+      <code>copyFromStorage</code>
+      <code>moveFromStorage</code>
+    </PossiblyUnusedMethod>
+    <PossiblyUnusedParam>
+      <code>$mount</code>
+      <code>$path</code>
+      <code>$source</code>
+      <code>$data</code>
+      <code>$mode</code>
+      <code>$time</code>
+      <code>$storage</code>
+      <code>$target</code>
+    </PossiblyUnusedParam>
+  </file>
+  <file src="lib/Striker.php">
+    <PossiblyUnusedMethod>
+      <code>__construct</code>
+    </PossiblyUnusedMethod>
   </file>
 </files>

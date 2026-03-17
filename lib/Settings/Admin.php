@@ -40,17 +40,15 @@ class Admin implements ISettings {
 		$this->config = $config;
 	}
 
-	/**
-	 * @return TemplateResponse
-	 */
-	public function getForm() {
+	#[\Override]
+	public function getForm(): TemplateResponse {
 		return new TemplateResponse('ransomware_protection', 'admin', [
 			'notesIncludeBiased' => $this->config->getAppValue('ransomware_protection', 'notes_include_biased', 'no') === 'yes',
 			'extensionAdditions' => $this->getCustomList('extension_additions'),
 			'noteFileAdditions' => $this->getCustomList('notefile_additions'),
 			'extensionExclusions' => $this->getCustomList('extension_exclusions'),
 			'noteFileExclusions' => $this->getCustomList('notefile_exclusions'),
-		], 'blank');
+		], '');
 	}
 
 	protected function getCustomList($list) {
@@ -59,21 +57,13 @@ class Admin implements ISettings {
 		return implode("\n", $data);
 	}
 
-	/**
-	 * @return string the section ID, e.g. 'sharing'
-	 */
-	public function getSection() {
+	#[\Override]
+	public function getSection(): string {
 		return 'security';
 	}
 
-	/**
-	 * @return int whether the form should be rather on the top or bottom of
-	 *             the admin section. The forms are arranged in ascending order of the
-	 *             priority values. It is required to return a value between 0 and 100.
-	 *
-	 * E.g.: 70
-	 */
-	public function getPriority() {
+	#[\Override]
+	public function getPriority(): int {
 		return 1;
 	}
 }

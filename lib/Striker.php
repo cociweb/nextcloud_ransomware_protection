@@ -161,7 +161,7 @@ class Striker {
 	 * @param string $path
 	 * @param string $pattern
 	 */
-	protected function addStrikeLog($case, $path, $pattern) {
+	protected function addStrikeLog($case, $path, $pattern): void {
 		$this->logger->warning(
 			'Prevented upload of {path} because it matches {case} pattern "{pattern}"',
 			[
@@ -179,7 +179,7 @@ class Striker {
 	 * @param string $pattern
 	 * @throws ForbiddenException
 	 */
-	protected function addRestrikeLog($case, $path, $pattern) {
+	protected function addRestrikeLog($case, $path, $pattern): void {
 		$this->logger->info(
 			'Prevented repeated upload of {path} because it matches {case} pattern "{pattern}"',
 			[

@@ -63,7 +63,8 @@ class Block extends Command {
 		$this->notifications = $notificationManager;
 	}
 
-	protected function configure() {
+	#[\Override]
+	protected function configure(): void {
 		$this
 			->setName('ransomware_protection:block')
 			->setDescription('Block a user from syncing further files')
@@ -75,14 +76,8 @@ class Block extends Command {
 		;
 	}
 
-	/**
-	 * @param InputInterface $input
-	 * @param OutputInterface $output
-	 * @return int
-	 * @throws \OCP\PreConditionNotMetException
-	 * @throws \InvalidArgumentException
-	 */
-	protected function execute(InputInterface $input, OutputInterface $output) {
+	#[\Override]
+	protected function execute(InputInterface $input, OutputInterface $output): int {
 		$userId = $input->getArgument('user-id');
 
 		if (!$this->userManager->userExists($userId)) {
