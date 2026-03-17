@@ -46,9 +46,9 @@ class Personal implements ISettings {
 	protected $userId;
 
 	public function __construct(IConfig $config,
-								ITimeFactory $time,
-								IL10N $l10n,
-								string $userId) {
+		ITimeFactory $time,
+		IL10N $l10n,
+		string $userId) {
 		$this->config = $config;
 		$this->time = $time;
 		$this->l10n = $l10n;
@@ -56,7 +56,7 @@ class Personal implements ISettings {
 	}
 
 	public function getForm(): TemplateResponse {
-		$disabledUntil = (int) $this->config->getUserValue($this->userId, 'ransomware_protection', 'disabled_until', 0);
+		$disabledUntil = (int)$this->config->getUserValue($this->userId, 'ransomware_protection', 'disabled_until', 0);
 		if ($disabledUntil < $this->time->getTime()) {
 			$disabledUntil = 0;
 		}
@@ -76,8 +76,8 @@ class Personal implements ISettings {
 
 	/**
 	 * @return int whether the form should be rather on the top or bottom of
-	 * the admin section. The forms are arranged in ascending order of the
-	 * priority values. It is required to return a value between 0 and 100.
+	 *             the admin section. The forms are arranged in ascending order of the
+	 *             priority values. It is required to return a value between 0 and 100.
 	 *
 	 * E.g.: 70
 	 */

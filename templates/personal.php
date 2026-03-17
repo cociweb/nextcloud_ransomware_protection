@@ -31,15 +31,15 @@ script('ransomware_protection', 'ransomware_protection');
 	<h2 class="inlineblock"><?php p($l->t('Ransomware protection')); ?></h2>
 
 	<p id="ransomware_protection_protected" class="<?php if ($_['disabledUntil']) {
-	p('hidden');
-} ?>">
+		p('hidden');
+	} ?>">
 		<span class="icon icon-checkmark-color svg"></span>
 		<?php p($l->t('Protection is currently active')); ?>
 	</p>
 
 	<p id="ransomware_protection_paused" class="<?php if (!$_['disabledUntil']) {
-	p('hidden');
-} ?>">
+		p('hidden');
+	} ?>">
 		<span class="icon icon-error-color svg"></span>
 		<span><?php print_unescaped($l->t('Protection is currently paused until: <strong>%s</strong>', $_['disabledUntil'])); ?></span><br>
 

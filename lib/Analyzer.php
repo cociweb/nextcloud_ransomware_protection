@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @copyright Copyright (c) 2017 Joas Schilling <coding@schilljs.com>
  *
@@ -332,7 +333,7 @@ class Analyzer {
 
 		if ($folder === 'thumbnails') {
 			[$fileId,] = explode('/', $innerPath, 2);
-			$innerPath = $storage->getCache()->getPathById((int) $fileId);
+			$innerPath = $storage->getCache()->getPathById((int)$fileId);
 
 			if ($innerPath !== null) {
 				return 'files/' . $innerPath;
@@ -350,9 +351,9 @@ class Analyzer {
 		$trace = $exception->getTrace();
 
 		foreach ($trace as $step) {
-			if (isset($step['class'], $step['function']) &&
-				$step['class'] === 'OC\Core\Controller\LoginController' &&
-				$step['function'] === 'tryLogin') {
+			if (isset($step['class'], $step['function'])
+				&& $step['class'] === 'OC\Core\Controller\LoginController'
+				&& $step['function'] === 'tryLogin') {
 				return true;
 			}
 		}
