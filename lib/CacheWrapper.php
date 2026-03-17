@@ -40,6 +40,7 @@ class CacheWrapper extends Wrapper {
 	 * @param ICache $cache
 	 * @param IStorage $storage
 	 * @param Analyzer $analyzer
+	 * @psalm-suppress PossiblyUnusedParam Psalm fails to detect that constructor parameters are stored for later use
 	 */
 	public function __construct(ICache $cache, IStorage $storage, Analyzer $analyzer) {
 		parent::__construct($cache);
@@ -52,6 +53,9 @@ class CacheWrapper extends Wrapper {
 		$this->mask &= ~Constants::PERMISSION_UPDATE;
 	}
 
+	/**
+	 * @psalm-suppress PossiblyUnusedParam Psalm fails to detect downstream use of $entry content
+	 */
 	protected function formatCacheEntry($entry) {
 		if (isset($entry['path'], $entry['permissions'])) {
 			try {
