@@ -3,8 +3,7 @@ updates:
 - package-ecosystem: composer
   directory: "/"
   schedule:
-    interval: weekly
-    day: tuesday
+    interval: daily
     time: "03:00"
     timezone: Europe/Budapest
   open-pull-requests-limit: 20
