@@ -30,12 +30,6 @@
     <UnusedClass>
       <code>CacheWrapper</code>
     </UnusedClass>
-    <PossiblyUnusedParam>
-      <code>$mount</code>
-      <code>$path</code>
-      <code>$storage</code>
-      <code>$source</code>
-    </PossiblyUnusedParam>
   </file>
   <file src="lib/Command/Block.php">
     <UnusedClass>
@@ -84,16 +78,6 @@
       <code>copyFromStorage</code>
       <code>moveFromStorage</code>
     </PossiblyUnusedMethod>
-    <PossiblyUnusedParam>
-      <code>$mount</code>
-      <code>$path</code>
-      <code>$source</code>
-      <code>$data</code>
-      <code>$mode</code>
-      <code>$time</code>
-      <code>$storage</code>
-      <code>$target</code>
-    </PossiblyUnusedParam>
   </file>
   <file src="lib/Striker.php">
     <PossiblyUnusedMethod>
