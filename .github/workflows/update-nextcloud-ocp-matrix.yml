@@ -44,6 +44,10 @@ jobs:
         run: composer require --dev nextcloud/ocp:dev-${{ matrix.target }}
         continue-on-error: true
 
+      - name: Composer update nextcloud/ocp
+        run: Composer update nextcloud/ocp --with-all-dependencies
+        continue-on-error: true
+
       - name: Reset checkout dirs
         run: |
           git clean -f 3rdparty
