@@ -18,6 +18,10 @@
     <UnusedClass>
       <code>Application</code>
     </UnusedClass>
+    <PossiblyUnusedParam>
+      <code>$mountPoint</code>
+      <code>$storage</code>
+    </PossiblyUnusedParam>
   </file>
   <file src="lib/CacheWrapper.php">
     <UndefinedClass occurrences="1">
