@@ -134,6 +134,7 @@ class StorageWrapper extends Wrapper {
 	 *
 	 * @param string $path
 	 * @return bool
+	 * @psalm-suppress PossiblyUnusedParam Psalm fails to detect that $path is passed to analyzer/storage
 	 */
 	public function isCreatable($path) {
 		try {
@@ -149,6 +150,7 @@ class StorageWrapper extends Wrapper {
 	 *
 	 * @param string $path
 	 * @return bool
+	 * @psalm-suppress PossiblyUnusedParam Psalm fails to detect that $path is passed to analyzer/storage
 	 */
 	public function isReadable($path) {
 		try {
@@ -164,6 +166,7 @@ class StorageWrapper extends Wrapper {
 	 *
 	 * @param string $path
 	 * @return bool
+	 * @psalm-suppress PossiblyUnusedParam Psalm fails to detect that $path is passed to analyzer/storage
 	 */
 	public function isUpdatable($path) {
 		try {
@@ -179,6 +182,7 @@ class StorageWrapper extends Wrapper {
 	 *
 	 * @param string $path
 	 * @return bool
+	 * @psalm-suppress PossiblyUnusedParam Psalm fails to detect that $path is passed to analyzer/storage
 	 */
 	public function isDeletable($path) {
 		try {
@@ -235,6 +239,7 @@ class StorageWrapper extends Wrapper {
 	 *
 	 * @param string $path
 	 * @return string
+	 * @psalm-suppress PossiblyUnusedParam Psalm fails to detect that $path is passed to analyzer/storage
 	 */
 	public function file_get_contents($path) {
 		$this->analyzer->checkPath($this, $path, Analyzer::READING);
@@ -247,6 +252,7 @@ class StorageWrapper extends Wrapper {
 	 * @param string $path
 	 * @param string $data
 	 * @return bool
+	 * @psalm-suppress PossiblyUnusedParam Psalm fails to detect that $path and $data are forwarded
 	 */
 	public function file_put_contents($path, $data) {
 		$this->analyzer->checkPath($this, $path, Analyzer::WRITING);
@@ -258,6 +264,7 @@ class StorageWrapper extends Wrapper {
 	 *
 	 * @param string $path
 	 * @return bool
+	 * @psalm-suppress PossiblyUnusedParam Psalm fails to detect that $path is passed to analyzer/storage
 	 */
 	public function unlink($path) {
 		$this->analyzer->checkPath($this, $path, Analyzer::DELETE);
@@ -270,6 +277,7 @@ class StorageWrapper extends Wrapper {
 	 * @param string $path1
 	 * @param string $path2
 	 * @return bool
+	 * @psalm-suppress PossiblyUnusedParam Psalm fails to detect that both parameters are forwarded
 	 */
 	public function rename($path1, $path2) {
 		$this->analyzer->checkPath($this, $path2, Analyzer::WRITING);
@@ -282,6 +290,7 @@ class StorageWrapper extends Wrapper {
 	 * @param string $path1
 	 * @param string $path2
 	 * @return bool
+	 * @psalm-suppress PossiblyUnusedParam Psalm fails to detect that both parameters are forwarded
 	 */
 	public function copy($path1, $path2) {
 		$this->analyzer->checkPath($this, $path2, Analyzer::WRITING);
@@ -294,6 +303,7 @@ class StorageWrapper extends Wrapper {
 	 * @param string $path
 	 * @param string $mode
 	 * @return resource
+	 * @psalm-suppress PossiblyUnusedParam Psalm fails to detect that both parameters are used inside
 	 */
 	public function fopen($path, $mode) {
 		$analyzeMode = Analyzer::READING;
@@ -368,6 +378,7 @@ class StorageWrapper extends Wrapper {
 	 * @param string $path
 	 * @param int $mtime
 	 * @return bool
+	 * @psalm-suppress PossiblyUnusedParam Psalm fails to detect that both parameters are forwarded
 	 */
 	public function touch($path, $mtime = null) {
 		$this->analyzer->checkPath($this, $path, Analyzer::WRITING);
@@ -405,6 +416,7 @@ class StorageWrapper extends Wrapper {
 	 * @param string $path
 	 * @param \OC\Files\Storage\Storage (optional) the storage to pass to the cache
 	 * @return \OC\Files\Cache\Cache
+	 * @psalm-suppress PossiblyUnusedParam Psalm fails to detect that both parameters are forwarded
 	 */
 	public function getCache($path = '', $storage = null) {
 		if (!$storage) {
@@ -530,6 +542,7 @@ class StorageWrapper extends Wrapper {
 	 *
 	 * @param string $path
 	 * @return array
+	 * @psalm-suppress PossiblyUnusedParam Psalm fails to detect that $path is passed to analyzer/storage
 	 */
 	public function getDirectDownload($path) {
 		$this->analyzer->checkPath($this, $path, Analyzer::READING);
@@ -569,6 +582,7 @@ class StorageWrapper extends Wrapper {
 	 * @param string $sourceInternalPath
 	 * @param string $targetInternalPath
 	 * @return bool
+	 * @psalm-suppress PossiblyUnusedParam Psalm fails to detect that all parameters are used
 	 */
 	public function copyFromStorage(IStorage $sourceStorage, $sourceInternalPath, $targetInternalPath) {
 		if ($sourceStorage === $this) {
@@ -584,6 +598,7 @@ class StorageWrapper extends Wrapper {
 	 * @param string $sourceInternalPath
 	 * @param string $targetInternalPath
 	 * @return bool
+	 * @psalm-suppress PossiblyUnusedParam Psalm fails to detect that all parameters are used
 	 */
 	public function moveFromStorage(IStorage $sourceStorage, $sourceInternalPath, $targetInternalPath) {
 		if ($sourceStorage === $this) {
