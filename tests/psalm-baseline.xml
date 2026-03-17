@@ -85,6 +85,7 @@
       <code>moveFromStorage</code>
     </PossiblyUnusedMethod>
     <PossiblyUnusedParam>
+      <code>$parameters</code>
       <code>$path</code>
       <code>$data</code>
       <code>$target</code>
