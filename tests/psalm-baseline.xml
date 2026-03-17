@@ -21,10 +21,6 @@
     <UnusedClass>
       <code>Application</code>
     </UnusedClass>
-    <MissingOverrideAttribute>
-      <code>register</code>
-      <code>boot</code>
-    </MissingOverrideAttribute>
     <PossiblyUnusedParam>
       <code>$context</code>
       <code>$event</code>
@@ -58,31 +54,16 @@
     <PossiblyUnusedMethod>
       <code>__construct</code>
     </PossiblyUnusedMethod>
-    <MissingOverrideAttribute>
-      <code>getid</code>
-      <code>getname</code>
-      <code>prepare</code>
-    </MissingOverrideAttribute>
   </file>
   <file src="lib/Settings/Admin.php">
     <UnusedClass>
       <code>Admin</code>
     </UnusedClass>
-    <MissingOverrideAttribute>
-      <code>getform</code>
-      <code>getsection</code>
-      <code>getpriority</code>
-    </MissingOverrideAttribute>
   </file>
   <file src="lib/Settings/Personal.php">
     <UnusedClass>
       <code>Personal</code>
     </UnusedClass>
-    <MissingOverrideAttribute>
-      <code>getform</code>
-      <code>getsection</code>
-      <code>getpriority</code>
-    </MissingOverrideAttribute>
   </file>
   <file src="lib/StorageWrapper.php">
     <PossiblyUnusedProperty>

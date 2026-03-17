@@ -27,7 +27,7 @@ use OCP\AppFramework\Utility\ITimeFactory;
 use OCP\Files\ForbiddenException;
 use OCP\Files\Storage\IStorage;
 use OCP\IConfig;
-use OCP\ILogger;
+use Psr\Log\LoggerInterface;
 use OCP\IRequest;
 
 class Analyzer {
@@ -61,7 +61,7 @@ class Analyzer {
 	/** @var IAppManager */
 	protected $appManager;
 
-	/** @var ILogger */
+	/** @var LoggerInterface */
 	protected $logger;
 
 	/** @var Striker */
@@ -81,11 +81,11 @@ class Analyzer {
 	 * @param IConfig $config
 	 * @param ITimeFactory $time
 	 * @param IAppManager $appManager
-	 * @param ILogger $logger
+	 * @param LoggerInterface $logger
 	 * @param Striker $striker
 	 * @param string $userId
 	 */
-	public function __construct(IRequest $request, IConfig $config, ITimeFactory $time, IAppManager $appManager, ILogger $logger, Striker $striker, $userId) {
+	public function __construct(IRequest $request, IConfig $config, ITimeFactory $time, IAppManager $appManager, LoggerInterface $logger, Striker $striker, $userId) {
 		$this->request = $request;
 		$this->config = $config;
 		$this->time = $time;

@@ -55,6 +55,7 @@ class Personal implements ISettings {
 		$this->userId = $userId;
 	}
 
+	#[\Override]
 	public function getForm(): TemplateResponse {
 		$disabledUntil = (int)$this->config->getUserValue($this->userId, 'ransomware_protection', 'disabled_until', 0);
 		if ($disabledUntil < $this->time->getTime()) {
@@ -67,20 +68,12 @@ class Personal implements ISettings {
 		], TemplateResponse::RENDER_AS_BLANK);
 	}
 
-	/**
-	 * @return string the section ID, e.g. 'sharing'
-	 */
+	#[\Override]
 	public function getSection(): string {
 		return 'security';
 	}
 
-	/**
-	 * @return int whether the form should be rather on the top or bottom of
-	 *             the admin section. The forms are arranged in ascending order of the
-	 *             priority values. It is required to return a value between 0 and 100.
-	 *
-	 * E.g.: 70
-	 */
+	#[\Override]
 	public function getPriority(): int {
 		return 50;
 	}

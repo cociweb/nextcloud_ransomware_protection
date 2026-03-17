@@ -42,9 +42,11 @@ class Application extends App implements IBootstrap {
 		parent::__construct('ransomware_protection');
 	}
 
+	#[\Override]
 	public function register(IRegistrationContext $context): void {
 	}
 
+	#[\Override]
 	public function boot(IBootContext $context): void {
 		Util::connectHook('OC_Filesystem', 'preSetup', $this, 'addStorageWrapper');
 		$context->injectFn(\Closure::fromCallable([$this, 'registerNotificationNotifier']));
@@ -58,12 +60,6 @@ class Application extends App implements IBootstrap {
 		Filesystem::addStorageWrapper('ransomware_protection', [$this, 'addStorageWrapperCallback'], -10);
 	}
 
-	/**
-	 * @internal
-	 * @param string $mountPoint
-	 * @param IStorage $storage
-	 * @return StorageWrapper|IStorage
-	 */
 	public function addStorageWrapperCallback($mountPoint, IStorage $storage) {
 		if (!\OC::$CLI && !$storage->instanceOfStorage('OCA\Files_Sharing\SharedStorage')) {
 			/** @var Analyzer $analyzer */

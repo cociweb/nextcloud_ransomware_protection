@@ -25,7 +25,7 @@ namespace OCA\RansomwareProtection;
 use OCP\AppFramework\Utility\ITimeFactory;
 use OCP\Files\ForbiddenException;
 use OCP\IConfig;
-use OCP\ILogger;
+use Psr\Log\LoggerInterface;
 use OCP\Notification\IManager;
 
 class Striker {
@@ -43,7 +43,7 @@ class Striker {
 	/** @var IManager */
 	protected $notifications;
 
-	/** @var ILogger */
+	/** @var LoggerInterface */
 	protected $logger;
 
 	/** @var string */
@@ -53,10 +53,10 @@ class Striker {
 	 * @param IConfig $config
 	 * @param ITimeFactory $time
 	 * @param IManager $notifications
-	 * @param ILogger $logger
+	 * @param LoggerInterface $logger
 	 * @param string $userId
 	 */
-	public function __construct(IConfig $config, ITimeFactory $time, IManager $notifications, ILogger $logger, $userId) {
+	public function __construct(IConfig $config, ITimeFactory $time, IManager $notifications, LoggerInterface $logger, $userId) {
 		$this->config = $config;
 		$this->time = $time;
 		$this->notifications = $notifications;
