@@ -15,15 +15,12 @@
     </PossiblyUnusedMethod>
   </file>
   <file src="lib/AppInfo/Application.php">
-    <MissingDependency occurrences="1">
-      <code>StorageWrapper|IStorage</code>
-    </MissingDependency>
     <UnusedClass>
       <code>Application</code>
     </UnusedClass>
     <PossiblyUnusedParam>
-      <code>$context</code>
-      <code>$event</code>
+      <code>$mountPoint</code>
+      <code>$storage</code>
     </PossiblyUnusedParam>
   </file>
   <file src="lib/CacheWrapper.php">
