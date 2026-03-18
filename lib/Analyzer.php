@@ -27,8 +27,8 @@ use OCP\AppFramework\Utility\ITimeFactory;
 use OCP\Files\ForbiddenException;
 use OCP\Files\Storage\IStorage;
 use OCP\IConfig;
-use Psr\Log\LoggerInterface;
 use OCP\IRequest;
+use Psr\Log\LoggerInterface;
 
 class Analyzer {
 	public const READING = 1;

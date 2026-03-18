@@ -25,8 +25,8 @@ namespace OCA\RansomwareProtection;
 use OCP\AppFramework\Utility\ITimeFactory;
 use OCP\Files\ForbiddenException;
 use OCP\IConfig;
-use Psr\Log\LoggerInterface;
 use OCP\Notification\IManager;
+use Psr\Log\LoggerInterface;
 
 class Striker {
 	public const FIRST_STRIKE = 1;
