@@ -203,8 +203,7 @@ class Analyzer {
 		$this->nestingLevel++;
 
 		$filePath = $path;
-		if (property_exists($storage, 'mountPoint')) {
-			/** @var StorageWrapper $storage */
+		if ($storage instanceof StorageWrapper) {
 			$filePath = $storage->mountPoint . $path;
 		}
 
@@ -292,8 +291,7 @@ class Analyzer {
 	 */
 	protected function isBlockablePath(IStorage $storage, $path) {
 		$fullPath = $path;
-		if (property_exists($storage, 'mountPoint')) {
-			/** @var StorageWrapper $storage */
+		if ($storage instanceof StorageWrapper) {
 			$fullPath = $storage->mountPoint . $path;
 		}
 
