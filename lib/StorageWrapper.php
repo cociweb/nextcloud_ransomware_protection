@@ -255,7 +255,7 @@ class StorageWrapper extends Wrapper {
 	 * @return bool
 	 * @psalm-suppress PossiblyUnusedParam Psalm fails to detect that $path and $data are forwarded
 	 */
-	public function file_put_contents(string $path, string $data): int|false {
+	public function file_put_contents(string $path, mixed $data): int|float|false {
 		$this->analyzer->checkPath($this, $path, Analyzer::WRITING);
 		return $this->storage->file_put_contents($path, $data);
 	}
@@ -419,7 +419,7 @@ class StorageWrapper extends Wrapper {
 	 * @return \OC\Files\Cache\Cache
 	 * @psalm-suppress PossiblyUnusedParam Psalm fails to detect that both parameters are forwarded
 	 */
-	public function getCache(string $path = '', ?\OC\Files\Storage\Storage $storage = null): \OC\Files\Cache\Cache {
+	public function getCache(string $path = '', ?IStorage $storage = null): \OCP\Files\Cache\ICache {
 		if (!$storage) {
 			$storage = $this;
 		}
