@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="6.15.1@28dc127af1b5aecd52314f6f645bafc10d0e11f9">
-  <file src="lib/Analyzer.php">
-    <PossiblyUnusedProperty>
-      <code><![CDATA[$logger]]></code>
-    </PossiblyUnusedProperty>
-  </file>
+<files psalm-version="6.16.1@f1f5de594dc76faf8784e02d3dc4716c91c6f6ac">
   <file src="lib/AppInfo/Application.php">
-    <UnusedClass>
-      <code><![CDATA[Application]]></code>
-    </UnusedClass>
     <PossiblyUnusedParam>
       <code><![CDATA[$mountPoint]]></code>
       <code><![CDATA[$storage]]></code>
@@ -18,33 +10,5 @@
     <UndefinedClass>
       <code><![CDATA[Wrapper]]></code>
     </UndefinedClass>
-    <UnusedClass>
-      <code><![CDATA[CacheWrapper]]></code>
-    </UnusedClass>
-  </file>
-  <file src="lib/Command/Block.php">
-    <UnusedClass>
-      <code><![CDATA[Block]]></code>
-    </UnusedClass>
-  </file>
-  <file src="lib/Controller/ApiController.php">
-    <UnusedClass>
-      <code><![CDATA[ApiController]]></code>
-    </UnusedClass>
-  </file>
-  <file src="lib/Settings/Admin.php">
-    <UnusedClass>
-      <code><![CDATA[Admin]]></code>
-    </UnusedClass>
-  </file>
-  <file src="lib/Settings/Personal.php">
-    <UnusedClass>
-      <code><![CDATA[Personal]]></code>
-    </UnusedClass>
-  </file>
-  <file src="lib/StorageWrapper.php">
-    <PossiblyUnusedProperty>
-      <code><![CDATA[$analyzer]]></code>
-    </PossiblyUnusedProperty>
   </file>
 </files>
