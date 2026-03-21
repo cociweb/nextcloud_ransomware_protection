@@ -17,7 +17,8 @@
         "php.executablePath": "/usr/local/bin/php",
         "php.validate.executablePath": "/usr/local/bin/php",
         "php.suggest.basic": false,
-        "editor.formatOnSave": true
+        "editor.formatOnSave": true,
+        "php.version": "8.4"
       }
     }
   },
