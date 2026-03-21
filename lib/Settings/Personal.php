@@ -31,6 +31,9 @@ use OCP\IConfig;
 use OCP\IL10N;
 use OCP\Settings\ISettings;
 
+/**
+ * @psalm-suppress UnusedClass
+ */
 class Personal implements ISettings {
 
 	/** @var IConfig */

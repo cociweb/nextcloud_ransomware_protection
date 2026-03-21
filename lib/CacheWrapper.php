@@ -28,6 +28,9 @@ use OCP\Files\Cache\ICache;
 use OCP\Files\ForbiddenException;
 use OCP\Files\Storage\IStorage;
 
+/**
+ * @psalm-suppress UnusedClass
+ */
 class CacheWrapper extends Wrapper {
 	/** @var Analyzer */
 	protected $analyzer;

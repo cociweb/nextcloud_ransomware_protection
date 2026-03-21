@@ -28,6 +28,9 @@ use OCP\AppFramework\Http\TemplateResponse;
 use OCP\IConfig;
 use OCP\Settings\ISettings;
 
+/**
+ * @psalm-suppress UnusedClass
+ */
 class Admin implements ISettings {
 
 	/** @var IConfig */

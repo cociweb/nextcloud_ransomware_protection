@@ -34,6 +34,9 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * @psalm-suppress UnusedClass
+ */
 class Block extends Command {
 
 	/** @var ITimeFactory */

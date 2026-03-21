@@ -36,6 +36,9 @@ use OCP\IUser;
 use OCP\IUserSession;
 use OCP\Notification\IManager;
 
+/**
+ * @psalm-suppress UnusedClass
+ */
 class ApiController extends OCSController {
 
 	/** @var IConfig */
