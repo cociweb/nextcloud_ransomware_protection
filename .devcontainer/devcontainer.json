@@ -11,7 +11,9 @@
         "xdebug.php-debug",
         "bmewburn.vscode-intelephense-client",
         "recca0120.vscode-phpunit",
-        "valeryron.magento2-docker"
+        "ms-vscode-remote.remote-containers",
+        "GitHub.vscode-pull-request-github",
+        "ms-vscode.vscode-github-actions"
       ],
       "settings": {
         "php.executablePath": "/usr/local/bin/php",
@@ -25,7 +27,7 @@
   "features": {
     "ghcr.io/devcontainers/features/git:1": {}
   },
-  "postCreateCommand": "composer install --ignore-platform-reqs && git config --global --add safe.directory /workspaces/nextcloud_ransomware_protection",
+  "postCreateCommand": "composer install --ignore-platform-reqs && git config --global --add safe.directory /workspaces/nextcloud_ransomware_protection && echo 'GitHub CLI installed. Run \"gh auth login\" to authenticate with GitHub.'",
   "forwardPorts": [8080],
   "remoteUser": "vscode",
   "portsAttributes": {
