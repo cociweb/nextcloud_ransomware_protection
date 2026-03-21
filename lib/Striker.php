@@ -50,62 +50,6 @@ class Striker {
 	protected $userId;
 
 	/**
-	 * @param IConfig $config
-	 * @param ITimeFactory $time
-	 * @param IManager $notifications
-	 * @param LoggerInterface $logger
-	 * @param string $userId
-	 */
-	public function __construct(IConfig $config, ITimeFactory $time, IManager $notifications, LoggerInterface $logger, $userId) {
-		$this->config = $config;
-		$this->time = $time;
-		$this->notifications = $notifications;
-		$this->logger = $logger;
-		$this->userId = $userId;
-	}
-
-	/**
-	 * @param int $mode
-	 * @param string $case
-	 * @param string $path
-	 * @param string $pattern
-	 * @throws ForbiddenException
-	 */
-	public function handleMatch($mode, $case, $path, $pattern) {
-		$lastStrikes = $this->config->getUserValue($this->userId, 'ransomware_protection', 'last_strikes', '[]');
-		$lastStrikes = json_decode($lastStrikes, true);
-
-		$strikeType = $this->checkLastStrikes($lastStrikes, $path);
-
-		if ($strikeType === self::ALREADY_STRIKED) {
-			$this->addRestrikeLog($case, $path, $pattern);
-		} else {
-			$this->addStrikeLog($case, $path, $pattern);
-
-			if ($mode === Analyzer::WRITING) {
-				$this->updateLastStrikes($lastStrikes, [
-					'path' => $path,
-					'time' => $this->time->getTime(),
-				]);
-			}
-		}
-
-		if ($mode === Analyzer::WRITING) {
-			if ($strikeType === self::FIFTH_STRIKE) {
-				// Block the user for 1 hour
-				$this->config->setUserValue($this->userId, 'ransomware_protection', 'clients_blocked', (string)($this->time->getTime() + 3600));
-				$this->notifyUser($path, $pattern, $strikeType);
-			}
-
-			if ($strikeType === self::FIRST_STRIKE) {
-				$this->notifyUser($path, $pattern, $strikeType);
-			}
-		}
-
-		throw new ForbiddenException('Ransomware file detected', true);
-	}
-
-	/**
 	 * @param array $lastStrikes
 	 * @param string $path
 	 * @return int
@@ -130,7 +74,7 @@ class Striker {
 	 * @param array $lastStrikes
 	 * @param array $newStrike
 	 */
-	protected function updateLastStrikes(array $lastStrikes, $newStrike) {
+	protected function updateLastStrikes(array $lastStrikes, $newStrike): void {
 		$thirtyMinutesAgo = $this->time->getTime() - 30 * 60;
 
 		$lastStrikes = array_filter($lastStrikes, function ($strike) use ($thirtyMinutesAgo) {
@@ -142,7 +86,7 @@ class Striker {
 		$this->config->setUserValue($this->userId, 'ransomware_protection', 'last_strikes', json_encode($lastStrikes));
 	}
 
-	protected function notifyUser($path, $pattern, $strikeType) {
+	protected function notifyUser(string $path, string $pattern, int $strikeType): void {
 		$notification = $this->notifications->createNotification();
 
 		$notification->setApp('ransomware_protection')

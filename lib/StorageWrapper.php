@@ -31,19 +31,6 @@ class StorageWrapper extends Wrapper {
 	/** @var Analyzer */
 	protected $analyzer;
 
-	/** @var string */
-	public $mountPoint;
-
-	/**
-	 * @param array $parameters
-	 * @psalm-suppress PossiblyUnusedParam Psalm fails to detect that the parameters are forwarded to parent and stored
-	 */
-	public function __construct(array $parameters) {
-		parent::__construct($parameters);
-		$this->analyzer = $parameters['analyzer'];
-		$this->mountPoint = $parameters['mountPoint'];
-	}
-
 	/*
 	 * Storage wrapper methods
 	 */
@@ -130,70 +117,6 @@ class StorageWrapper extends Wrapper {
 	//		return $this->storage->filesize($path);
 	//	}
 
-	/**
-	 * check if a file can be created in $path
-	 *
-	 * @param string $path
-	 * @return bool
-	 * @psalm-suppress PossiblyUnusedParam Psalm fails to detect that $path is passed to analyzer/storage
-	 */
-	public function isCreatable(string $path): bool {
-		try {
-			$this->analyzer->checkPath($this, $path, Analyzer::WRITING);
-		} catch (ForbiddenException $e) {
-			return false;
-		}
-		return $this->storage->isCreatable($path);
-	}
-
-	/**
-	 * check if a file can be read
-	 *
-	 * @param string $path
-	 * @return bool
-	 * @psalm-suppress PossiblyUnusedParam Psalm fails to detect that $path is passed to analyzer/storage
-	 */
-	public function isReadable(string $path): bool {
-		try {
-			$this->analyzer->checkPath($this, $path, Analyzer::READING);
-		} catch (ForbiddenException $e) {
-			return false;
-		}
-		return $this->storage->isReadable($path);
-	}
-
-	/**
-	 * check if a file can be written to
-	 *
-	 * @param string $path
-	 * @return bool
-	 * @psalm-suppress PossiblyUnusedParam Psalm fails to detect that $path is passed to analyzer/storage
-	 */
-	public function isUpdatable(string $path): bool {
-		try {
-			$this->analyzer->checkPath($this, $path, Analyzer::WRITING);
-		} catch (ForbiddenException $e) {
-			return false;
-		}
-		return $this->storage->isUpdatable($path);
-	}
-
-	/**
-	 * check if a file can be deleted
-	 *
-	 * @param string $path
-	 * @return bool
-	 * @psalm-suppress PossiblyUnusedParam Psalm fails to detect that $path is passed to analyzer/storage
-	 */
-	public function isDeletable(string $path): bool {
-		try {
-			$this->analyzer->checkPath($this, $path, Analyzer::DELETE);
-		} catch (ForbiddenException $e) {
-			return false;
-		}
-		return $this->storage->isDeletable($path);
-	}
-
 	//	/**
 	//	 * check if a file can be shared
 	//	 *
@@ -234,100 +157,6 @@ class StorageWrapper extends Wrapper {
 	//	public function filemtime($path) {
 	//		return $this->storage->filemtime($path);
 	//	}
-
-	/**
-	 * see http://php.net/manual/en/function.file_get_contents.php
-	 *
-	 * @param string $path
-	 * @return string
-	 * @psalm-suppress PossiblyUnusedParam Psalm fails to detect that $path is passed to analyzer/storage
-	 */
-	public function file_get_contents(string $path): string|false {
-		$this->analyzer->checkPath($this, $path, Analyzer::READING);
-		return $this->storage->file_get_contents($path);
-	}
-
-	/**
-	 * see http://php.net/manual/en/function.file_put_contents.php
-	 *
-	 * @param string $path
-	 * @param string $data
-	 * @return bool
-	 * @psalm-suppress PossiblyUnusedParam Psalm fails to detect that $path and $data are forwarded
-	 */
-	public function file_put_contents(string $path, mixed $data): int|float|false {
-		$this->analyzer->checkPath($this, $path, Analyzer::WRITING);
-		return $this->storage->file_put_contents($path, $data);
-	}
-
-	/**
-	 * see http://php.net/manual/en/function.unlink.php
-	 *
-	 * @param string $path
-	 * @return bool
-	 * @psalm-suppress PossiblyUnusedParam Psalm fails to detect that $path is passed to analyzer/storage
-	 */
-	public function unlink(string $path): bool {
-		$this->analyzer->checkPath($this, $path, Analyzer::DELETE);
-		return $this->storage->unlink($path);
-	}
-
-	/**
-	 * see http://php.net/manual/en/function.rename.php
-	 *
-	 * @param string $path1
-	 * @param string $path2
-	 * @return bool
-	 * @psalm-suppress PossiblyUnusedParam Psalm fails to detect that both parameters are forwarded
-	 */
-	public function rename(string $path1, string $path2): bool {
-		$this->analyzer->checkPath($this, $path2, Analyzer::WRITING);
-		return $this->storage->rename($path1, $path2);
-	}
-
-	/**
-	 * see http://php.net/manual/en/function.copy.php
-	 *
-	 * @param string $path1
-	 * @param string $path2
-	 * @return bool
-	 * @psalm-suppress PossiblyUnusedParam Psalm fails to detect that both parameters are forwarded
-	 */
-	public function copy(string $path1, string $path2): bool {
-		$this->analyzer->checkPath($this, $path2, Analyzer::WRITING);
-		return $this->storage->copy($path1, $path2);
-	}
-
-	/**
-	 * see http://php.net/manual/en/function.fopen.php
-	 *
-	 * @param string $path
-	 * @param string $mode
-	 * @return resource
-	 * @psalm-suppress PossiblyUnusedParam Psalm fails to detect that both parameters are used inside
-	 */
-	public function fopen(string $path, string $mode) {
-		$analyzeMode = Analyzer::READING;
-		switch ($mode) {
-			case 'r+':
-			case 'rb+':
-			case 'w+':
-			case 'wb+':
-			case 'x+':
-			case 'xb+':
-			case 'a+':
-			case 'ab+':
-			case 'w':
-			case 'wb':
-			case 'x':
-			case 'xb':
-			case 'a':
-			case 'ab':
-				$analyzeMode = Analyzer::WRITING;
-		}
-		$this->analyzer->checkPath($this, $path, $analyzeMode);
-		return $this->storage->fopen($path, $mode);
-	}
 
 	//	/**
 	//	 * get the mimetype for a file or folder
@@ -372,20 +201,6 @@ class StorageWrapper extends Wrapper {
 	//		return $this->storage->search($query);
 	//	}
 
-	/**
-	 * see http://php.net/manual/en/function.touch.php
-	 * If the backend does not support the operation, false should be returned
-	 *
-	 * @param string $path
-	 * @param int $mtime
-	 * @return bool
-	 * @psalm-suppress PossiblyUnusedParam Psalm fails to detect that both parameters are forwarded
-	 */
-	public function touch(string $path, ?int $mtime = null): bool {
-		$this->analyzer->checkPath($this, $path, Analyzer::WRITING);
-		return $this->storage->touch($path, $mtime);
-	}
-
 	//	/**
 	//	 * get the path to a local version of the file.
 	//	 * The local version of the file can be temporary and doesn't have to be persistent across requests
@@ -410,22 +225,6 @@ class StorageWrapper extends Wrapper {
 	//	public function hasUpdated($path, $time) {
 	//		return $this->storage->hasUpdated($path, $time);
 	//	}
-
-	/**
-	 * get a cache instance for the storage
-	 *
-	 * @param string $path
-	 * @param \OC\Files\Storage\Storage (optional) the storage to pass to the cache
-	 * @return \OC\Files\Cache\Cache
-	 * @psalm-suppress PossiblyUnusedParam Psalm fails to detect that both parameters are forwarded
-	 */
-	public function getCache(string $path = '', ?IStorage $storage = null): \OCP\Files\Cache\ICache {
-		if (!$storage) {
-			$storage = $this;
-		}
-		$cache = $this->storage->getCache($path, $storage);
-		return new CacheWrapper($cache, $storage, $this->analyzer);
-	}
 
 	//	/**
 	//	 * get a scanner instance for the storage
@@ -536,20 +335,6 @@ class StorageWrapper extends Wrapper {
 	//		return call_user_func_array(array($this->storage, $method), $args);
 	//	}
 
-	/**
-	 * A custom storage implementation can return an url for direct download of a give file.
-	 *
-	 * For now the returned array can hold the parameter url - in future more attributes might follow.
-	 *
-	 * @param string $path
-	 * @return array
-	 * @psalm-suppress PossiblyUnusedParam Psalm fails to detect that $path is passed to analyzer/storage
-	 */
-	public function getDirectDownload(string $path): array {
-		$this->analyzer->checkPath($this, $path, Analyzer::READING);
-		return $this->storage->getDirectDownload($path);
-	}
-
 	//	/**
 	//	 * Get availability of the storage
 	//	 *
@@ -577,38 +362,6 @@ class StorageWrapper extends Wrapper {
 	//	public function verifyPath($path, $fileName) {
 	//		$this->storage->verifyPath($path, $fileName);
 	//	}
-
-	/**
-	 * @param IStorage $sourceStorage
-	 * @param string $sourceInternalPath
-	 * @param string $targetInternalPath
-	 * @return bool
-	 * @psalm-suppress PossiblyUnusedParam Psalm fails to detect that all parameters are used
-	 */
-	public function copyFromStorage(IStorage $sourceStorage, string $sourceInternalPath, string $targetInternalPath): bool {
-		if ($sourceStorage === $this) {
-			return $this->copy($sourceInternalPath, $targetInternalPath);
-		}
-
-		$this->analyzer->checkPath($this, $targetInternalPath, Analyzer::WRITING);
-		return $this->storage->copyFromStorage($sourceStorage, $sourceInternalPath, $targetInternalPath);
-	}
-
-	/**
-	 * @param IStorage $sourceStorage
-	 * @param string $sourceInternalPath
-	 * @param string $targetInternalPath
-	 * @return bool
-	 * @psalm-suppress PossiblyUnusedParam Psalm fails to detect that all parameters are used
-	 */
-	public function moveFromStorage(IStorage $sourceStorage, string $sourceInternalPath, string $targetInternalPath): bool {
-		if ($sourceStorage === $this) {
-			return $this->rename($sourceInternalPath, $targetInternalPath);
-		}
-
-		$this->analyzer->checkPath($this, $targetInternalPath, Analyzer::WRITING);
-		return $this->storage->moveFromStorage($sourceStorage, $sourceInternalPath, $targetInternalPath);
-	}
 
 	//	/**
 	//	 * @param string $path

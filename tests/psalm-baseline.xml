@@ -1,87 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <files psalm-version="6.15.1@28dc127af1b5aecd52314f6f645bafc10d0e11f9">
   <file src="lib/Analyzer.php">
-    <MissingDependency occurrences="2">
-      <code>$filePath</code>
-      <code>$fullPath</code>
-    </MissingDependency>
     <PossiblyUnusedProperty>
-      <code>$logger</code>
+      <code><![CDATA[$logger]]></code>
     </PossiblyUnusedProperty>
-    <PossiblyUnusedMethod>
-      <code>__construct</code>
-      <code>checkPath</code>
-      <code>translatePath</code>
-    </PossiblyUnusedMethod>
   </file>
   <file src="lib/AppInfo/Application.php">
     <UnusedClass>
-      <code>Application</code>
+      <code><![CDATA[Application]]></code>
     </UnusedClass>
     <PossiblyUnusedParam>
-      <code>$mountPoint</code>
-      <code>$storage</code>
+      <code><![CDATA[$mountPoint]]></code>
+      <code><![CDATA[$storage]]></code>
     </PossiblyUnusedParam>
   </file>
   <file src="lib/CacheWrapper.php">
-    <UndefinedClass occurrences="1">
-      <code>Wrapper</code>
+    <UndefinedClass>
+      <code><![CDATA[Wrapper]]></code>
     </UndefinedClass>
     <UnusedClass>
-      <code>CacheWrapper</code>
+      <code><![CDATA[CacheWrapper]]></code>
     </UnusedClass>
   </file>
   <file src="lib/Command/Block.php">
     <UnusedClass>
-      <code>Block</code>
+      <code><![CDATA[Block]]></code>
     </UnusedClass>
   </file>
   <file src="lib/Controller/ApiController.php">
     <UnusedClass>
-      <code>ApiController</code>
+      <code><![CDATA[ApiController]]></code>
     </UnusedClass>
-  </file>
-  <file src="lib/Notification/Notifier.php">
-    <PossiblyUnusedMethod>
-      <code>__construct</code>
-    </PossiblyUnusedMethod>
   </file>
   <file src="lib/Settings/Admin.php">
     <UnusedClass>
-      <code>Admin</code>
+      <code><![CDATA[Admin]]></code>
     </UnusedClass>
   </file>
   <file src="lib/Settings/Personal.php">
     <UnusedClass>
-      <code>Personal</code>
+      <code><![CDATA[Personal]]></code>
     </UnusedClass>
   </file>
   <file src="lib/StorageWrapper.php">
     <PossiblyUnusedProperty>
-      <code>$analyzer</code>
+      <code><![CDATA[$analyzer]]></code>
     </PossiblyUnusedProperty>
-    <PossiblyUnusedMethod>
-      <code>__construct</code>
-      <code>isCreatable</code>
-      <code>isReadable</code>
-      <code>isUpdatable</code>
-      <code>isDeletable</code>
-      <code>file_get_contents</code>
-      <code>file_put_contents</code>
-      <code>unlink</code>
-      <code>rename</code>
-      <code>copy</code>
-      <code>fopen</code>
-      <code>touch</code>
-      <code>getCache</code>
-      <code>getDirectDownload</code>
-      <code>copyFromStorage</code>
-      <code>moveFromStorage</code>
-    </PossiblyUnusedMethod>
-  </file>
-  <file src="lib/Striker.php">
-    <PossiblyUnusedMethod>
-      <code>__construct</code>
-    </PossiblyUnusedMethod>
   </file>
 </files>

@@ -51,7 +51,7 @@ class Admin implements ISettings {
 		], '');
 	}
 
-	protected function getCustomList($list) {
+	protected function getCustomList(string $list): string {
 		$config = $this->config->getAppValue('ransomware_protection', $list, '[]');
 		$data = json_decode($config, true);
 		return implode("\n", $data);

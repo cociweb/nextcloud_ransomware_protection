@@ -17,7 +17,7 @@
   "features": {
     "ghcr.io/devcontainers/features/git:1": {}
   },
-  "postCreateCommand": "composer install",
+  "postCreateCommand": "composer install && git config --global --add safe.directory /workspaces/nextcloud_ransomware_protection",
   "forwardPorts": [8080],
   "remoteUser": "vscode"
 }

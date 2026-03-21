@@ -55,7 +55,7 @@ class Application extends App implements IBootstrap {
 	/**
 	 * @internal
 	 */
-	public function addStorageWrapper() {
+	public function addStorageWrapper(): void {
 		// Needs to be added as the first layer
 		Filesystem::addStorageWrapper('ransomware_protection', [$this, 'addStorageWrapperCallback'], -10);
 	}
@@ -74,7 +74,7 @@ class Application extends App implements IBootstrap {
 		return $storage;
 	}
 
-	protected function registerNotificationNotifier(IManager $manager) {
+	protected function registerNotificationNotifier(IManager $manager): void {
 		$manager->registerNotifierService(Notifier::class);
 	}
 }

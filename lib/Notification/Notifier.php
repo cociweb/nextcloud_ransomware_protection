@@ -46,19 +46,6 @@ class Notifier implements INotifier {
 	/** @var IURLGenerator */
 	protected $urlGenerator;
 
-	/**
-	 * @param IFactory $l10nFactory
-	 * @param IUserManager $userManager
-	 * @param IManager $notificationManager
-	 * @param IURLGenerator $urlGenerator
-	 */
-	public function __construct(IFactory $l10nFactory, IUserManager $userManager, IManager $notificationManager, IURLGenerator $urlGenerator) {
-		$this->l10nFactory = $l10nFactory;
-		$this->userManager = $userManager;
-		$this->notificationManager = $notificationManager;
-		$this->urlGenerator = $urlGenerator;
-	}
-
 	#[\Override]
 	public function getID(): string {
 		return 'ransomware_protection';
