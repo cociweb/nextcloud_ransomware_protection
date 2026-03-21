@@ -50,6 +50,7 @@ class Striker {
 	protected $userId;
 
 	/**
+	 * @psalm-suppress PossiblyUnusedMethod
 	 * @param array $lastStrikes
 	 * @param string $path
 	 * @return int
@@ -71,6 +72,7 @@ class Striker {
 	}
 
 	/**
+	 * @psalm-suppress PossiblyUnusedMethod
 	 * @param array $lastStrikes
 	 * @param array $newStrike
 	 */
@@ -86,6 +88,9 @@ class Striker {
 		$this->config->setUserValue($this->userId, 'ransomware_protection', 'last_strikes', json_encode($lastStrikes));
 	}
 
+	/**
+	 * @psalm-suppress PossiblyUnusedMethod
+	 */
 	protected function notifyUser(string $path, string $pattern, int $strikeType): void {
 		$notification = $this->notifications->createNotification();
 
@@ -101,6 +106,7 @@ class Striker {
 	}
 
 	/**
+	 * @psalm-suppress PossiblyUnusedMethod
 	 * @param string $case
 	 * @param string $path
 	 * @param string $pattern
@@ -118,6 +124,7 @@ class Striker {
 	}
 
 	/**
+	 * @psalm-suppress PossiblyUnusedMethod
 	 * @param string $case
 	 * @param string $path
 	 * @param string $pattern

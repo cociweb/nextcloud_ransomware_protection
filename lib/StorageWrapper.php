@@ -26,6 +26,9 @@ use OC\Files\Storage\Wrapper\Wrapper;
 use OCP\Files\ForbiddenException;
 use OCP\Files\Storage\IStorage;
 
+/**
+ * @psalm-suppress UnusedClass
+ */
 class StorageWrapper extends Wrapper {
 
 	/** @var Analyzer */

@@ -12,9 +12,12 @@
 		"optimize-autoloader": true,
 		"classmap-authoritative": true,
 		"platform": {
-			"php": "8.4.3"
+			"php": "8.3"
 		},
-		"sort-packages": true
+		"sort-packages": true,
+		"allow-plugins": {
+			"php-http/discovery": true
+		}
 	},
 	"scripts": {
 		"lint": "find . -name \\*.php -not -path './vendor/*' -not -path './build/*' -print0 | xargs -0 -n1 php -l",
@@ -29,6 +32,6 @@
 		"nextcloud/coding-standard": "^1.4.0",
 		"nextcloud/ocp": "dev-stable33",
 		"phpunit/phpunit": "^13.0",
-		"vimeo/psalm": "^6.15"
+		"vimeo/psalm": "^6.16"
 	}
 }

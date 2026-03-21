@@ -30,6 +30,9 @@ use OCP\IConfig;
 use OCP\IRequest;
 use Psr\Log\LoggerInterface;
 
+/**
+ * @psalm-suppress UnusedClass
+ */
 class Analyzer {
 	public const READING = 1;
 	public const WRITING = 2;

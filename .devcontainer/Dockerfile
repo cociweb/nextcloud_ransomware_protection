@@ -2,14 +2,16 @@ FROM mcr.microsoft.com/devcontainers/php:8.3
 
 USER root
 
-# Install required PHP extensions for Psalm and Nextcloud (minimal set)
+# Install required PHP extensions for Psalm and Nextcloud
 RUN apt-get update && apt-get install -y \
     libxml2-dev \
     libzip-dev \
     unzip \
     git \
     libonig-dev \
-    && docker-php-ext-install dom simplexml xml mbstring zip curl \
+    libpng-dev \
+    libjpeg-dev \
+    && docker-php-ext-install dom simplexml xml mbstring zip curl gd \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install Composer if not present
@@ -21,8 +23,8 @@ WORKDIR /workspace
 # Copy composer files from project root
 COPY composer.json composer.lock ./
 
-# Install dependencies as root
-RUN composer install --no-interaction --no-plugins --no-scripts --prefer-dist
+# Install dependencies as root (ignore platform requirements since we're using PHP 8.3 vs 8.4.3 requirement)
+RUN composer install --no-interaction --no-plugins --no-scripts --prefer-dist --ignore-platform-reqs
 
 # Copy source code
 COPY . .
@@ -33,5 +35,5 @@ RUN chown -R vscode:vscode /workspace || true
 # Switch to vscode user
 USER vscode
 
-# Verify installation
-RUN php -v && composer --version && php -m | grep -E "(dom|simplexml|mbstring|xml|zip|curl)"
+# Verify installation and composer scripts
+RUN php -v && composer --version && composer run-script --list

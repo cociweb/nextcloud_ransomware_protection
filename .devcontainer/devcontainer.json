@@ -10,14 +10,27 @@
         "ms-vscode.vscode-json",
         "xdebug.php-debug",
         "bmewburn.vscode-intelephense-client",
-        "recca0120.vscode-phpunit"
-      ]
+        "recca0120.vscode-phpunit",
+        "valeryron.magento2-docker"
+      ],
+      "settings": {
+        "php.executablePath": "/usr/local/bin/php",
+        "php.validate.executablePath": "/usr/local/bin/php",
+        "php.suggest.basic": false,
+        "editor.formatOnSave": true
+      }
     }
   },
   "features": {
     "ghcr.io/devcontainers/features/git:1": {}
   },
-  "postCreateCommand": "composer install && git config --global --add safe.directory /workspaces/nextcloud_ransomware_protection",
+  "postCreateCommand": "composer install --ignore-platform-reqs && git config --global --add safe.directory /workspaces/nextcloud_ransomware_protection",
   "forwardPorts": [8080],
-  "remoteUser": "vscode"
+  "remoteUser": "vscode",
+  "portsAttributes": {
+    "8080": {
+      "label": "Nextcloud",
+      "onAutoForward": "notify"
+    }
+  }
 }
