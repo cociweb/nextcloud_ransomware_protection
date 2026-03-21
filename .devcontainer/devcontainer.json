@@ -1,0 +1,23 @@
+{
+  "name": "Nextcloud Ransomware Protection",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.vscode-json",
+        "xdebug.php-debug",
+        "bmewburn.vscode-intelephense-client",
+        "recca0120.vscode-phpunit"
+      ]
+    }
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {}
+  },
+  "postCreateCommand": "composer install",
+  "forwardPorts": [8080],
+  "remoteUser": "vscode"
+}
