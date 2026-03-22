@@ -11,9 +11,9 @@
         "xdebug.php-debug",
         "bmewburn.vscode-intelephense-client",
         "recca0120.vscode-phpunit",
-        "ms-vscode-remote.remote-containers",
+        "ms-azuretools.vscode-containers",
         "GitHub.vscode-pull-request-github",
-        "ms-vscode.vscode-github-actions"
+        "GitHub.vscode-github-actions"
       ],
       "settings": {
         "php.executablePath": "/usr/local/bin/php",
